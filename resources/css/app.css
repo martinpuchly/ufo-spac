@@ -1,3 +1,62 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer base{
+
+    body {
+        @apply bg-gray-200 pb-10;
+      }
+      .main-container {
+        @apply min-h-screen rounded-b-lg bg-white px-3;
+      }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+        @apply mb-3 text-sky-900;
+    }
+
+    h1 {
+        @apply text-3xl font-bold underline;
+    }
+    h2 {
+        @apply text-2xl font-bold underline;
+    }
+    h3 {
+        @apply text-xl font-bold underline;
+    }
+    h4 {
+        @apply text-lg font-bold underline;
+    }
+    h5 {
+        @apply text-base font-bold underline;
+    }
+
+
+    
+    .header-titile {
+      @apply ml-10 text-2xl font-bold italic text-sky-900 sm:text-3xl md:text-5xl;
+    }
+
+
+    table{
+      @apply w-full
+    }
+
+    thead{
+      @apply bg-sky-900 text-white font-bold 
+    }
+    th{
+      @apply text-left px-2 py-1
+    }
+
+    td{
+      @apply px-2
+    }
+
+
+
+}

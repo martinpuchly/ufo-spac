@@ -1,31 +1,27 @@
 <script setup>
-import GuestLayout from '@/Layouts/GuestLayout.vue';
+import AppLayout from '@/Layouts/AppLayout.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { Head, useForm } from '@inertiajs/vue3';
-
 defineProps({
     status: String,
 });
-
 const form = useForm({
     email: '',
 });
-
 const submit = () => {
     form.post(route('password.email'));
 };
 </script>
 
 <template>
-    <GuestLayout>
-        <Head title="Forgot Password" />
-
+    <AppLayout>
+        <Head title="Zabudol si heslo?" />
+        <h1>Zabudol si heslo?</h1>
         <div class="mb-4 text-sm text-gray-600">
-            Forgot your password? No problem. Just let us know your email address and we will email you a password reset
-            link that will allow you to choose a new one.
+            Zabudol si heslo? Žiadny problém. Vyplň emailovú adresu použitú pri registrácii a my ti pošleme link na obnovenie hesla.
         </div>
 
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
@@ -34,7 +30,7 @@ const submit = () => {
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="email" value="Email" />
+                <InputLabel for="email" value="Emailová adresa: " />
 
                 <TextInput
                     id="email"
@@ -51,9 +47,9 @@ const submit = () => {
 
             <div class="flex items-center justify-end mt-4">
                 <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Email Password Reset Link
+                    Poslať link na obnovu hesla
                 </PrimaryButton>
             </div>
         </form>
-    </GuestLayout>
+    </AppLayout>
 </template>
