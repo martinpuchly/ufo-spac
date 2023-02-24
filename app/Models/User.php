@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Authenticatable
 {
@@ -77,6 +78,12 @@ class User extends Authenticatable
     {
         if (count($this->allPermissions()) > 0 || $this->id === 1) return true;
         return false;
+    }
+
+
+    public function player(): HasOne
+    {
+        return $this->hasOne(Player::class);
     }
 
 }

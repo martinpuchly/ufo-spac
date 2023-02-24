@@ -13,6 +13,21 @@ return new class extends Migration
     {
         Schema::create('players', function (Blueprint $table) {
             $table->id();
+            $table->string('first_name');
+            $table->integer('first_name_visibility', 1)->default(1);
+            $table->string('last_name');
+            $table->integer('last_name_visibility', 1)->default(1);
+            $table->string('nickname');
+            $table->integer('nickname_visibility', 1)->default(1);
+            $table->date('birth_date');
+            $table->integer('birth_date_visibility', 1)->default(1);
+            $table->string('photo');
+            $table->integer('photo_visibility', 1)->default(1);
+            $table->string('shirt_number');
+            $table->integer('shirt_number_visibility', 1)->default(1);
+            $table->string('about');
+            $table->integer('about_visibility', 1)->default(1);
+            $table->foreignId('user_id')->nullable()->nullOnDelete()->constrained();
             $table->timestamps();
         });
     }
@@ -22,6 +37,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('players');
+        Schema::dropIfExists('players', function(Blueprint $table){
+            $table->dropForeign('players_user_id_foreign');
+        });
     }
 };
