@@ -27,9 +27,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profil', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profil', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profil', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 
@@ -57,11 +57,18 @@ Route::name('admin.')->prefix('admin')->group(function () {
     Route::patch('/povolenia/skupina/{group}', [PermissionController::class, 'groupSave'])->middleware('can:setGroup,App\Models\Permission');
 
 
+    #HRÁČI
+    Route::get('/hraci/vytvorit/{user}', [PlayerController::class, 'create'])->name('players.create')->middleware('can:create,App\Models\Player');
+    Route::post('/hraci/vytvorit/{user}', [PlayerController::class, 'store'])->middleware('can:create,App\Models\Player');
+
+
 });
 
 
 
-
+    #HRÁČI
+    Route::get('/hrac/profil/{player}', [PlayerController::class, 'edit'])->name('players.edit')->middleware('can:edit,App\Models\Player');
+    Route::post('/hrac/profil/{player}', [PlayerController::class, 'update'])->middleware('can:edit,App\Models\Player');
 
 
 

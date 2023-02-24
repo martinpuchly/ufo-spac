@@ -26,7 +26,7 @@ class Permission extends Model
 
 
 
-     public static function orderedPerm(Object $permissions = null): Array
+     public static function orderedPerm(Object $permissions = null): array
      {
         if($permissions == null){
             $permissions = (new static)->all();

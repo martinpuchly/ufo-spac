@@ -14,7 +14,7 @@ class Player extends Model
     protected $fillable =   ['first_name', 'first_name_visibility', 'last_name', 'last_name_visibility', 
                                 'nickname', 'nickname_visibility', 'birth_date', 'birth_date_visibility', 
                                 'photo', 'photo_visibility', 'shirt_number', 'shirt_number_visibility', 
-                                'about', 'about_visibility', 'user_id', 'user_visibility', 
+                                'about', 'about_visibility', 'user_id', 'user_visibility', 'slug'
                             ];
 
     /*

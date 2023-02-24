@@ -57,7 +57,7 @@ class User extends Authenticatable
 
 
 
-    private function allPermissions(): Array
+    private function allPermissions(): array
     {
         $permmissions = [];
         $groups = $this->groups;

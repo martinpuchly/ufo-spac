@@ -17,17 +17,18 @@ return new class extends Migration
             $table->integer('first_name_visibility', 1)->default(1);
             $table->string('last_name');
             $table->integer('last_name_visibility', 1)->default(1);
-            $table->string('nickname');
+            $table->string('nickname')->nullable();
             $table->integer('nickname_visibility', 1)->default(1);
-            $table->date('birth_date');
+            $table->date('birth_date')->nullable();
             $table->integer('birth_date_visibility', 1)->default(1);
-            $table->string('photo');
+            $table->string('photo')->nullable();
             $table->integer('photo_visibility', 1)->default(1);
-            $table->string('shirt_number');
+            $table->string('shirt_number')->nullable();
             $table->integer('shirt_number_visibility', 1)->default(1);
-            $table->string('about');
+            $table->string('about')->nullable();
             $table->integer('about_visibility', 1)->default(1);
             $table->foreignId('user_id')->nullable()->nullOnDelete()->constrained();
+            $table->string('slug');
             $table->timestamps();
         });
     }
