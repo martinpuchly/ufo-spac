@@ -16,7 +16,7 @@ class GroupPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->hasPermission('groups');
+        return $user->hasPerm('groups');
     }
 
     /**
@@ -24,7 +24,7 @@ class GroupPolicy
      */
     public function setUser(User $user): bool
     {
-        return $user->hasPermission('user-groups');
+        return $user->hasPerm('user-groups');
     }
 
     
@@ -33,7 +33,7 @@ class GroupPolicy
      */
     public function create(User $user): bool|RedirectResponse
     {
-        if($user->hasPermission('group-add')){
+        if($user->hasPerm('group-add')){
             return true;
         }
         return abort(403);
@@ -44,7 +44,7 @@ class GroupPolicy
      */
     public function update(User $user): bool|RedirectResponse
     {
-        if($user->hasPermission('group-edit')){
+        if($user->hasPerm('group-edit')){
             return true;
         }
         return abort(403);
@@ -55,7 +55,7 @@ class GroupPolicy
      */
     public function delete(User $user): bool|RedirectResponse
     {
-        if($user->hasPermission('group-delete')){
+        if($user->hasPerm('group-delete')){
             return true;
         }
         return abort(403);

@@ -68,7 +68,7 @@ class User extends Authenticatable
         return array_unique($permmissions);
     }
 
-    public function hasPermission($permission_key = ""): bool
+    public function hasPerm($permission_key = ""): bool
     {
         if ($this->id === 1) return true;
         return in_array($permission_key, $this->allPermissions());

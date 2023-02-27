@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class PlayerRequest extends FormRequest
 {
@@ -27,15 +28,16 @@ class PlayerRequest extends FormRequest
             'photo' => 'nullable|mimes:jpg,bmp,png',
             'shirt_number' => 'nullable|integer|min:0|max:99|unique:players,shirt_number,'.$this->id,
             'about' => 'nullable|min:10|max:5000',
-            'user_id' => 'nullable|unique:players,user_id,'.$this->id,
-            'first_name_visibility' => 'required|integer',
-            'last_name_visibility' => 'required|integer',
-            'nickname_visibility' => 'required|integer',
-            'birth_date_visibility' => 'required|integer',
-            'photo_visibility' => 'required|integer',
-            'shirt_number_visibility' => 'required|integer',
-            'about_visibility' => 'required|integer',
-            'user_visibility' => 'required|integer',        
+            'user_id' => 'nullable|unique:players,user_id,id,'.$this->id,
+            'first_name_visibility' => 'nullable|integer',
+            'last_name_visibility' => 'nullable|integer',
+            'nickname_visibility' => 'nullable|integer',
+            'birth_date_visibility' => 'nullable|integer',
+            'photo_visibility' => 'nullable|integer',
+            'shirt_number_visibility' => 'nullable|integer',
+            'about_visibility' => 'nullable|integer',
+            'user_visibility' => 'nullable|integer',        
+            'slug'=> 'required|unique:players,slug,id,'.$this->id,
         ];
     }
 
@@ -71,12 +73,13 @@ class PlayerRequest extends FormRequest
      */
     protected function prepareForValidation(): void
     {
-        $slug = Str::slug($this->first_name_visibility.' '.$this->last_name_visibility);
-        if($this->first_name_visibility>1 or $this->last_name_visibility>1){
-            $slug = $this->id;
+        $slug = Str::slug($this->first_name.' '.$this->last_name);
+        if($this->first_name_visibility && $this->first_name_visibility>1 or $this->last_name_visibility && $this->last_name_visibility>1){
+            $slug = $this->route('user')->id;
         }
         $this->merge([
             'slug' => $slug,
+            'user_id' => empty($this->user_id) ? $this->route('user')->id : $this->user_id
         ]);
     }
 }

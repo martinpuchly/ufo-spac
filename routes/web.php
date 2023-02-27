@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\PlayerController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Models\User;
@@ -61,14 +62,17 @@ Route::name('admin.')->prefix('admin')->group(function () {
     Route::get('/hraci/vytvorit/{user}', [PlayerController::class, 'create'])->name('players.create')->middleware('can:create,App\Models\Player');
     Route::post('/hraci/vytvorit/{user}', [PlayerController::class, 'store'])->middleware('can:create,App\Models\Player');
 
+    Route::get('/hrac/profil/{player}', [PlayerController::class, 'editAdmin'])->name('player.edit')->middleware('can:editAdmin,App\Models\Player');
+    Route::patch('/hrac/profil/{player}', [PlayerController::class, 'updateAdmin'])->middleware('can:editAdmin,App\Models\Player');
+
 
 });
 
 
 
     #HRÁČI
-    Route::get('/hrac/profil/{player}', [PlayerController::class, 'edit'])->name('players.edit')->middleware('can:edit,App\Models\Player');
-    Route::post('/hrac/profil/{player}', [PlayerController::class, 'update'])->middleware('can:edit,App\Models\Player');
+    Route::get('/hrac/profil', [PlayerController::class, 'edit'])->name('player.edit')->middleware('can:edit,App\Models\Player');
+    Route::patch('/hrac/profil', [PlayerController::class, 'update'])->middleware('can:edit,App\Models\Player');
 
 
 

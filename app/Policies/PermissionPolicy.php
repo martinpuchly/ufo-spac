@@ -31,7 +31,7 @@ class PermissionPolicy
      */
     public function setUser(User $user): bool
     {
-        return $user->hasPermission('user-permissions');
+        return $user->hasPerm('user-permissions');
     }
 
 
@@ -43,7 +43,7 @@ class PermissionPolicy
      */
     public function setGroup(User $user): bool
     {
-        return $user->hasPermission('group-permissions');
+        return $user->hasPerm('group-permissions');
 
     }
 

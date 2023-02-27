@@ -14,19 +14,19 @@ return new class extends Migration
         Schema::create('players', function (Blueprint $table) {
             $table->id();
             $table->string('first_name');
-            $table->integer('first_name_visibility', 1)->default(1);
+            $table->integer('first_name_visibility')->default(1);
             $table->string('last_name');
-            $table->integer('last_name_visibility', 1)->default(1);
+            $table->integer('last_name_visibility')->default(1);
             $table->string('nickname')->nullable();
-            $table->integer('nickname_visibility', 1)->default(1);
+            $table->integer('nickname_visibility')->default(1);
             $table->date('birth_date')->nullable();
-            $table->integer('birth_date_visibility', 1)->default(1);
+            $table->integer('birth_date_visibility')->default(1);
             $table->string('photo')->nullable();
-            $table->integer('photo_visibility', 1)->default(1);
+            $table->integer('photo_visibility')->default(1);
             $table->string('shirt_number')->nullable();
-            $table->integer('shirt_number_visibility', 1)->default(1);
+            $table->integer('shirt_number_visibility')->default(1);
             $table->string('about')->nullable();
-            $table->integer('about_visibility', 1)->default(1);
+            $table->integer('about_visibility')->default(1);
             $table->foreignId('user_id')->nullable()->nullOnDelete()->constrained();
             $table->string('slug');
             $table->timestamps();

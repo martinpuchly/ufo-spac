@@ -20,11 +20,11 @@ class Player extends Model
     /*
     * možnosti nastavenia zviditeľnenia jednotlivých atribútov
     */
-    public static VISIBILITY = [
+    public static $visibility = array(
         1=>'verejné',
         2=>'iba hráči',
         3=>'neverejné'
-    ];
+    );
 
     public function user(): BelongsTo
     {
