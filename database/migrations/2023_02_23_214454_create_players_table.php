@@ -29,6 +29,7 @@ return new class extends Migration
             $table->integer('about_visibility')->default(1);
             $table->foreignId('user_id')->nullable()->nullOnDelete()->constrained();
             $table->string('slug');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -40,6 +41,7 @@ return new class extends Migration
     {
         Schema::dropIfExists('players', function(Blueprint $table){
             $table->dropForeign('players_user_id_foreign');
+            $table->dropSoftDeletes();
         });
     }
 };

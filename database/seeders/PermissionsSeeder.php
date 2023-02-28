@@ -46,6 +46,7 @@ class PermissionsSeeder extends Seeder
                 Permission::insert(['main_name' => 'Hráči', 'name' => 'vytvoriť hráča', 'key' => 'admin-player-add', 'route' => 'admin.player.add', 'link_in_admin_menu' => 0]);
                 Permission::insert(['main_name' => 'Hráči', 'name' => 'upraviť hráča', 'key' => 'admin-player-edit', 'route' => 'admin.player.edit', 'link_in_admin_menu' => 0]);
                 Permission::insert(['main_name' => 'Hráči', 'name' => 'vymazať hráča', 'key' => 'admin-player-delete', 'route' => 'admin.player.delete', 'link_in_admin_menu' => 0]);
+                Permission::insert(['main_name' => 'Hráči', 'name' => 'trvalo vymazať hráča', 'key' => 'admin-player-destroyForce', 'route' => 'admin.player.destroyForce', 'link_in_admin_menu' => 0]);
             
                 #TRAININGS
                 Permission::insert(['main_name' => 'Hráči', 'name' => 'zoznam tréningov', 'key' => 'admin-trainings', 'route' => 'admin.trainings', 'link_in_admin_menu' => 1]);

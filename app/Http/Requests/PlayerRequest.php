@@ -63,7 +63,6 @@ class PlayerRequest extends FormRequest
             'shirt_number.unique' => 'Číslo dresu už je priradené inému hráčovi.',
             'about.min' => 'O mne musí obsahovať minimálne :min znakov.',
             'about.max' => 'O mne môže obsahovať maximálne :max znakov.',
-            'user_id.unique' => 'Užívateľ už má vytvorený hráčsky účet.',
         ];
     }
 
@@ -79,7 +78,6 @@ class PlayerRequest extends FormRequest
         }
         $this->merge([
             'slug' => $slug,
-            'user_id' => empty($this->user_id) ? $this->route('user')->id : $this->user_id
         ]);
     }
 }

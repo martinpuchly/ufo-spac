@@ -61,18 +61,17 @@ Route::name('admin.')->prefix('admin')->group(function () {
     #HRÁČI
     Route::get('/hraci/vytvorit/{user}', [PlayerController::class, 'create'])->name('players.create')->middleware('can:create,App\Models\Player');
     Route::post('/hraci/vytvorit/{user}', [PlayerController::class, 'store'])->middleware('can:create,App\Models\Player');
-
-    Route::get('/hrac/profil/{player}', [PlayerController::class, 'editAdmin'])->name('player.edit')->middleware('can:editAdmin,App\Models\Player');
-    Route::patch('/hrac/profil/{player}', [PlayerController::class, 'updateAdmin'])->middleware('can:editAdmin,App\Models\Player');
+    Route::get('/hrac/profil/{player}', [PlayerController::class, 'editAdmin'])->name('player.edit')->middleware('can:editAdmin,player');
+    Route::patch('/hrac/profil/{player}', [PlayerController::class, 'updateAdmin'])->middleware('can:editAdmin,player');
+    Route::delete('/hrac/profil/{player}', [PlayerController::class, 'admin.destroyForce'])->name('player.destroyForce')->middleware('can:destroyForce,player');
 
 
 });
 
-
-
     #HRÁČI
     Route::get('/hrac/profil', [PlayerController::class, 'edit'])->name('player.edit')->middleware('can:edit,App\Models\Player');
     Route::patch('/hrac/profil', [PlayerController::class, 'update'])->middleware('can:edit,App\Models\Player');
+    Route::delete('/hrac/profil/{player}', [PlayerController::class, 'destroy'])->middleware('can:edit,App\Models\Player');
 
 
 

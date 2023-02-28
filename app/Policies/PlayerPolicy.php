@@ -47,7 +47,7 @@ class PlayerPolicy
     /**
      * Determine whether the user can create models.
      */
-    public function editAdmin(User $user): Response|bool
+    public function editAdmin(User $user, Player $player): Response|bool
     {
         if($user->hasPerm('admin-player-edit'))
         {
@@ -57,5 +57,31 @@ class PlayerPolicy
     }
 
 
+    /**
+     * Determine whether the user can create models.
+     */
+    public function destroy(User $user, Player $player): Response|bool
+    {
+        if($user->hasPerm('admin-player-destroy') or $player->user_id == $user->id)
+        {
+            return true;
+        }       
+        return abort(403);
+    }
+
+
+
+    /**
+     * Determine whether the user can create models.
+     */
+    public function destroyForce(User $user, Player $player): Response|bool
+    {
+        if($user->hasPerm('admin-player-destroyForce'))
+        {
+            return true;
+        }       
+        return abort(403);
+    }
+    
 
 }
